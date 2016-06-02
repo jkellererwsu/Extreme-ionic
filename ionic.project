@@ -1,0 +1,9 @@
+{
+  "name": "Extreme",
+  "app_id": "",
+  "proxies": [{
+    "path": "/api/",
+    "proxyUrl": "http://app.extremenazarene.org/api/"
+  }
+  ]
+}

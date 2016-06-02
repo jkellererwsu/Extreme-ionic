@@ -1,0 +1,82 @@
+<ion-view id="newContact" class=" ">
+    <ion-nav-title>Nuevo</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button icon ion-edit icon-right" ui-sref="menu.contacts">
+            Cancelar
+        </button>
+    </ion-nav-buttons>
+    <ion-content padding="false" class="has-header">
+        <form id="edit-contact{{contact.id}}" class="list ">
+            <ion-list id="register-list2" class=" ">
+                <label class="item item-input " name="fname" >
+                    <span class="input-label">Primer Nombre</span>
+                    <input type="text" placeholder="" ng-model="contact.fname">
+                </label>
+                <label class="item item-input " name="lname" >
+                    <span class="input-label">Apellido </span>
+                    <input type="text" placeholder="" ng-model="contact.lname">
+                </label>
+                <label class="item item-input " id="register-input3" name="email">
+                    <span class="input-label">Email</span>
+                    <input type="email" placeholder="" ng-model="contact.email">
+                </label>
+                <label class="item item-input " name="phone" >
+                    <span class="input-label">Teléfono </span>
+                    <input type="tel" placeholder="" ng-model="contact.phone">
+                </label>
+                <label class="item item-input " name="street" >
+                    <span class="input-label">Calle </span>
+                    <input type="text" placeholder="" ng-model="contact.address">
+                </label>
+                <label class="item item-input " name="city" >
+                    <span class="input-label">Ciudad </span>
+                    <input type="text" placeholder="" ng-model="contact.city">
+                </label>
+                <label class="item item-input " name="bday" >
+                    <span class="input-label">Cumpleaños: </span>
+                    <input type="date" placeholder="" ng-model="dates.bday">
+                </label>
+                <label class="item item-input " name="anniversary">
+                    <span class="input-label">Aniversario: </span>
+                    <input type="date" placeholder="" ng-model="dates.anniversary">
+                </label>
+
+                <label class="item item-select " id="leaders-select" name="church">
+                    <span class="input-label">Líder de Contacto:</span>
+                    <select ng-model="contact.leader_id" ng-options="key as value for (key, value) in lists.all_leaders">
+                    </select>
+                </label>
+
+
+            <label class="item item-select " id="group-select" name="church">
+                <span class="input-label">Groupo de Contacto:</span>
+                <select ng-model="contact.group_id" ng-options="key as value for (key, value) in lists.groups">
+                </select>
+            </label>
+                <fancy-select
+                        header-text="Single"
+                        allow-empty="false"
+                        value="selectedPositions.input"
+                        value2="selectedPositions.output"
+                        text="Elegir"
+                        items="lists.all_positions"
+                        value-property="title"
+                        text-property="title"
+                        multi-select="true"
+                        note-text="Posición en la Iglesia"
+
+                        modal-template-url="lib/ionic-fancy-select/templates/modal-template.html"
+                        template-url="lib/ionic-fancy-select/templates/item-template.html"
+                        value-changed="onValueChanged(value)"
+                        get-custom-text="getCustomText(value)"
+
+                >
+                </fancy-select>
+
+            </ion-list>
+            <button id="register-button4" class=" button button-energized  button-block " ng-click="newContact()">Sign up</button>
+        </form>
+
+
+    </ion-content>
+</ion-view>

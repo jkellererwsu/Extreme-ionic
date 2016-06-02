@@ -1,0 +1,67 @@
+<ion-view id="pageContact{{contact.id}}" class=" " hide-back-button="false">
+    <ion-nav-title>{{contact.contact_show.fname+' '+ contact.contact_show.lname}}</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button icon ion-edit icon-right" ui-sref="contactEdit({contactId: contact.contact_show.id})">
+           editar
+        </button>
+    </ion-nav-buttons>
+    <ion-content padding="false" class="has-header">
+        <div id="contactos-button-bar1" class=" button-bar "></div>
+        <div class="contact_show_header" style="">
+            <h1>{{contact.contact_show.fname+' '+contact.contact_show.lname}}</h1>
+            <h3 ng-show="contact.contact_show.leader_id">Líder: <a ui-sref="contactShow({contactId: contact.contact_show.leader.id})">{{contact.contact_show.leader.fname+' '+contact.contact_show.leader.lname}}</a></h3>
+        </div>
+        <div class="contact_show_body list">
+            <div class="item item-divider">Details</div>
+            <div class="item">Email: {{contact.contact_show.email}}</div>
+            <div class="item">Teléfono: {{contact.contact_show.phone}}</div>
+            <div class="item">Direccion de casa: {{contact.contact_show.address +', '+ contact.contact_show.city}}</div>
+            <div class="item">Fecha de Aniversario: {{anniversary | date: 'yyyy-MM-dd'}}</div>
+            <div class="item">Fecha de Nacimiento: {{bday | date: 'yyyy-MM-dd'}}</div>
+            <!--<div class="item item-divider">Posición:</div>
+            <div ng-repeat="position in contact.positions">
+                <div class="item" >{{position.title}}</div>
+            </div>-->
+            <div ng-show="contact.followers.length" class="item item-divider">Discípulos:</div>
+            <div ng-repeat="follower in contact.followers">
+                <a class="item" ui-sref="contactShow({contactId: follower.id})">{{follower.fname+' '+follower.lname}}</a>
+            </div>
+            <div class="item item-divider">Grupos:</div>
+            <div ng-show="contact.group_leader">
+                <a class="item" ui-sref="contactShow({contactId: contact.group_leader.id})">Líder de {{contact.group_leader.name}}</a>
+            </div>
+            <div ng-show="contact.group_timothy">
+                <a class="item" ui-sref="contactShow({contactId: contact.group_timothy.id})">Timoteo de {{contact.group_timothy.name}}</a>
+            </div>
+            <div ng-show="contact.group_host">
+                <a class="item" ui-sref="contactShow({contactId: contact.group_host.id})">Anfitrión de {{contact.group_host.name}}</a>
+            </div>
+            <div ng-show="contact.group">
+                <a class="item" ui-sref="contactShow({contactId: contact.group.id})">Membro de {{contact.group.name}}</a>
+            </div>
+            <div ng-show="contact.events.length" class="item item-divider">Eventos Personal:</div>
+            <div ng-repeat="event in contact.events">
+                <a class="item" ui-sref="contactShow({contactId: event.id})">{{event.name}}</a>
+            </div>
+
+        <div ng-show="contact.trainings.length" class="item item-divider">Eventos Personal:</div>
+        <div ng-repeat="(key, value) in contact.trainings | orderBy: 'displayOrder' | groupBy: 'category'">
+            <ion-item class="item-stable item" ng-click="toggle(key)">
+                <i class="icon" ng-class="key == state ? 'ion-minus' : 'ion-plus'"></i>
+                {{key}}
+            </ion-item>
+
+            <div ng-repeat="training in value" ng-show="key == state">
+                <a class="item-accordion item"  ui-sref="menu.contactShow({contactId: training.id})">{{training.name}} - {{training.pivot.date | limitTo: 10}}</a>
+            </div>
+        </div>
+        </div>
+
+        <button id="delete-button4" class=" button button-energized  button-block " ng-click="deleteContact()">Delete</button>
+
+
+        </div>
+
+
+    </ion-content>
+</ion-view>

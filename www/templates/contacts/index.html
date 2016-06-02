@@ -1,0 +1,21 @@
+<ion-view id="page7">
+    <ion-nav-title>Contactos</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button icon ion-ios-plus-outline icon-right" ui-sref="contactCreate">
+            Nuevo
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content padding="true" class="has-header">
+        <div id="contactos-button-bar1" class=" button-bar "></div>
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Filter Contacts" ng-model="search">
+            </label>
+            <ion-list ng-repeat ="contact in contacts | filter:search">
+                <ion-item class="item-avatar energized  " id="contactos-list-item6" ui-sref="menu.contactShow({contactId: contact.id})" >
+                    <h2energized>{{contact.fname +' '+ contact.lname}}</h2energized>
+                </ion-item>
+            </ion-list>
+    </ion-content>
+</ion-view>

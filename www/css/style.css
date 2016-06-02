@@ -1,0 +1,15 @@
+.contact_show_header{
+    background:url('../img/quito.jpg');
+    height:200px;
+    background-position:center;
+    padding:10px;
+}
+.contact_show_header h1, .contact_show_header h3 {
+    color:#ffffff;
+}
+.contact_show_body{
+    padding:20px;
+}
+.right {
+    float: right;
+}
