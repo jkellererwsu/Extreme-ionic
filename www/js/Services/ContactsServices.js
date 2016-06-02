@@ -134,6 +134,32 @@ angular.module('app.services')
                 return promise;
             };
             return promise;
+        },
+        deleteContact: function (token, contactId) {
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+            var settings = {
+                "async":true,
+                "crossDomain": true,
+                "url": "/api/api/contacts/"+contactId+"/?token=" + token,
+                "method": "DELETE"
+            };
+            $http(settings).then(function mySuccess(response) {
+                deferred.resolve(response.data);
+            }, function myError(response) {
+                deferred.reject(response.statusText);
+            });
+
+
+            promise.success = function (fn) {
+                promise.then(fn);
+                return promise;
+            };
+            promise.error = function (fn) {
+                promise.then(null, fn);
+                return promise;
+            };
+            return promise;
         }
     }
 });

@@ -43,6 +43,22 @@ angular.module('app.controllers')
             return group.show;
         };
 
+        $scope.deleteContact = function(){
+            ContactsService.deleteContact($scope.token, $stateParams.contactId).success(function(data){
+                console.log(data);
+                $state.go('menu.contacts',{}, {reload: true});
+            }).error(function(data){
+                if(data =='Unauthorized'){
+                    window.localStorage.removeItem("token");
+                    $state.go('login');
+                }else{
+                    console.log(data);
+                }
+
+            });
+
+        }
+
     })
     .controller('contactsEditCtrl', function($scope,ContactsService, GroupsService, $state, $stateParams){
         $scope.token = window.localStorage.getItem("token");
@@ -97,7 +113,7 @@ angular.module('app.controllers')
             ContactsService.updateContact($scope.token, $stateParams.contactId, $scope.updateContact).success(function(data){
                 $scope.result = data;
                 console.log($scope.result);
-                $state.go('menu.contactShow',{contactId: $stateParams.contactId });
+                $state.go('menu.contactShow',{contactId: $stateParams.contactId }, {reload: true});
             }).error(function(data){
                 if(data =='Unauthorized'){
                     window.localStorage.removeItem("token");
