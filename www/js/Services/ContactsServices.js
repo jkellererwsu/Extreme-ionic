@@ -162,4 +162,8 @@ angular.module('app.services')
             return promise;
         }
     }
-});
+})
+    .service('ContactsService1', function($resource) {
+        return $resource('/api/api/contacts/:contact',{contact: "@contact"});
+
+    });
