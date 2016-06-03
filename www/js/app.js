@@ -12,7 +12,8 @@ angular.module('app', [
     'app.services',
     'app.directives',
 'angular.filter',
-'ionic-fancy-select'])
+'ionic-fancy-select',
+'ngResource'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
