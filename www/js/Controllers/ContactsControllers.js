@@ -7,12 +7,7 @@ angular.module('app.controllers')
     ContactsService1.contacts($scope.token).get(null, function(data){
         $scope.contacts = data['contacts'];
     }, function(data){
-        if(data =='Unauthorized'){
-            window.localStorage.removeItem("token");
-            $state.go('login');
-        }else{
-            //console.log(data);
-        }
+        console.log(data);
     });
 
 })
@@ -25,12 +20,7 @@ angular.module('app.controllers')
             $scope.bday = new Date($scope.contact.contact_show.bday.date);
             console.log($scope.contact);
         }, function(data){
-            if(data =='Unauthorized'){
-                window.localStorage.removeItem("token");
-                $state.go('login');
-            }else{
-                //console.log(data);
-            }
+            console.log(data);
         });
 
         $scope.toggle = function (group) {
@@ -49,12 +39,7 @@ angular.module('app.controllers')
                 console.log(data);
                 $state.go('menu.contacts',{}, {reload: true});
             }, function(data){
-                if(data =='Unauthorized'){
-                    window.localStorage.removeItem("token");
-                    $state.go('login');
-                }else{
-                    //console.log(data);
-                }
+                console.log(data);
             });
 
 
@@ -76,12 +61,7 @@ angular.module('app.controllers')
             });
             console.log($scope.contact);
         }, function(data){
-            if(data =='Unauthorized'){
-                window.localStorage.removeItem("token");
-                $state.go('login');
-            }else{
-                //console.log(data);
-            }
+            console.log(data);
         });
 
         $scope.editContact = function(){
@@ -115,12 +95,7 @@ angular.module('app.controllers')
                 console.log($scope.result);
                 $state.go('menu.contactShow',{contactId: $stateParams.contactId }, {reload: true});
             }, function(data){
-                if(data =='Unauthorized'){
-                    window.localStorage.removeItem("token");
-                    $state.go('login');
-                }else{
-                    //console.log(data);
-                }
+                console.log(data);
             });
 
         };
@@ -169,12 +144,7 @@ angular.module('app.controllers')
                 console.log($scope.result);
                 $state.go('menu.contacts', {}, {reload: true});
             }, function(data){
-                if(data =='Unauthorized'){
-                    window.localStorage.removeItem("token");
-                    $state.go('login');
-                }else{
-                    //console.log(data);
-                }
+                console.log(data);
             });
 
         };
