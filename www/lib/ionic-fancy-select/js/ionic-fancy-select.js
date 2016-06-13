@@ -181,7 +181,7 @@
                                 angular.forEach(scope.items, function(item, key) {
                                     if (item[scope.checkedProperty]) {
                                         scope.value[scope.value.length] = scope.getItemValue(item);
-                                        scope.value2[scope.value2.length] = item;
+                                        scope.value2[scope.value2.length] = item['id'];
                                     }
                                 });
                             }

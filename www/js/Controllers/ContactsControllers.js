@@ -103,7 +103,7 @@ angular.module('app.controllers')
     })
     .controller('contactsCreateCtrl', function($scope,ContactsService, ContactsService1, GroupsService, $state){
         $scope.token = window.localStorage.getItem("token");
-        $scope.contact = {};
+        $scope.contact = [];
         $scope.dates=[];
         $scope.dates.anniversary = new Date();
         $scope.dates.bday = new Date();
@@ -111,7 +111,7 @@ angular.module('app.controllers')
 
         ContactsService.getLists($scope.token).success(function(data){
             $scope.lists = data;
-            console.log($scope.contact);
+            console.log($scope.lists);
         }).error(function(data){
             if(data =='Unauthorized'){
                 window.localStorage.removeItem("token");
