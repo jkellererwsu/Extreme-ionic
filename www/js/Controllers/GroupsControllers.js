@@ -1,24 +1,32 @@
 angular.module('app.controllers')
 
-.controller('contactsCtrl', function($scope, ContactsService1, $state) {
+.controller('groupsCtrl', function($scope, GroupsService, $state) {
     $scope.token = window.localStorage.getItem("token");
-    $scope.contacts = [];
+    $scope.groups = [];
     //ContactsService.getContacts($scope.token)
-    ContactsService1.contacts($scope.token).get(null, function(data){
-        $scope.contacts = data['contacts'];
+    GroupsService.groups($scope.token).get(null, function(data){
+        $scope.groups = data['groups'];
     }, function(data){
         console.log(data);
     });
 
 })
-    .controller('contactsShowCtrl', function($scope,ContactsService1, $state, $stateParams){
+    .controller('groupsShowCtrl', function($scope,GroupsService, $state, $stateParams){
         $scope.token = window.localStorage.getItem("token");
-        $scope.contact = [];
-        ContactsService1.contacts($scope.token).get({contact:$stateParams.contactId}, function(data){
-            $scope.contact = data;
-            $scope.anniversary = new Date($scope.contact.contact_show.anniversary.date);
-            $scope.bday = new Date($scope.contact.contact_show.bday.date);
-            console.log($scope.contact);
+        $scope.group = [];
+        $scope.attendance =[];
+        GroupsService.groups($scope.token).get({group:$stateParams.groupId}, function(data){
+            $scope.group = data.group;
+            $scope.alldata = data;
+            $scope.founded = new Date($scope.group.founded.date);
+            angular.forEach($scope.alldata.attendance, function(item) {
+                    console.log(item);
+                if(item.pivot.group_id == $scope.group.id) {
+                    $scope.attendance.push(item.pivot);
+                }
+            });
+            console.log($scope.alldata);
+            console.log($scope.attendance);
         }, function(data){
             console.log(data);
         });
@@ -34,10 +42,10 @@ angular.module('app.controllers')
             return group.show;
         };
 
-        $scope.deleteContact = function(){
-            ContactsService1.contacts($scope.token).delete({contact:$stateParams.contactId}, function(data){
+        $scope.deleteGroup = function(){
+            GroupsService.groups($scope.token).delete({group:$stateParams.groupId}, function(data){
                 console.log(data);
-                $state.go('menu.contacts',{}, {reload: true});
+                $state.go('menu.groups',{}, {reload: true});
             }, function(data){
                 console.log(data);
             });
@@ -46,25 +54,20 @@ angular.module('app.controllers')
         }
 
     })
-    .controller('contactsEditCtrl', function($scope,ContactsService1, $state, $stateParams){
+    .controller('groupsEditCtrl', function($scope, GroupsService, $state, $stateParams){
         $scope.token = window.localStorage.getItem("token");
-        $scope.contact = [];
+        $scope.group = [];
         $scope.selectedPositions = {input: [], output: null};
-        $scope.postest = null;
-        ContactsService1.contacts($scope.token).get({contact:$stateParams.contactId}, function(data){
-            $scope.contact = data;
+        GroupsService.groups($scope.token).get({group:$stateParams.groupId}, function(data){
+            $scope.group = data;
             $scope.dates=[];
-            $scope.dates.anniversary = new Date($scope.contact.contact_show.anniversary.date);
-            $scope.dates.bday = new Date($scope.contact.contact_show.bday.date);
-            angular.forEach($scope.contact.positions, function(item, key) {
-                $scope.selectedPositions.input[key] = item.title;
-            });
+            //$scope.dates.anniversary = new Date($scope.contact.contact_show.anniversary.date);
             console.log($scope.contact);
         }, function(data){
             console.log(data);
         });
 
-        $scope.editContact = function(){
+        $scope.editGroup = function(){
             function formatJSDate(date) {
                 var d = new Date(date),
                     month = '' + (d.getMonth() + 1),
@@ -101,7 +104,7 @@ angular.module('app.controllers')
         };
 
     })
-    .controller('contactsCreateCtrl', function($scope,ContactsService, ContactsService1, $state){
+    .controller('groupsCreateCtrl', function($scope,ContactsService, ContactsService1, GroupsService, $state){
         $scope.token = window.localStorage.getItem("token");
         $scope.contact = [];
         $scope.dates=[];

@@ -4,11 +4,18 @@
     background-position:center;
     padding:10px;
 }
-.contact_show_header h1, .contact_show_header h3 {
+.contact_show_header h1, .contact_show_header h3, .group_show_header h1, .group_show_header h3 {
     color:#ffffff;
 }
-.contact_show_body{
+.contact_show_body, .group_show_body{
     padding:20px;
+}
+/*GROUP SECTION */
+.group_show_header{
+    background:url('../img/church_bg.jpg');
+    height:220px;
+    background-position:center;
+    padding:10px;
 }
 .right {
     float: right;

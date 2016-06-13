@@ -1,0 +1,21 @@
+<ion-view id="group_index">
+    <ion-nav-title>Grupos</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button icon ion-ios-plus-outline icon-right" ui-sref="groupCreate">
+            Nuevo
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content padding="true" class="has-header">
+        <div id="group-button-bar1" class=" button-bar "></div>
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" placeholder="Filter Grupos" ng-model="search">
+        </label>
+        <ion-list ng-repeat="group in groups | filter:search">
+            <ion-item class="item-avatar energized  " id="group-list-item6" ui-sref="menu.groupShow({groupId: group.id})" >
+                <h2energized>{{group.name}}</h2energized>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

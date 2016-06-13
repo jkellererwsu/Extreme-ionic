@@ -45,7 +45,7 @@ angular.module('app.routes', [])
     templateUrl: 'templates/auth/reset.html',
     controller: 'forgotPasswordCtrl'
   })
-
+//CONTACTS
   .state('menu.contacts', {
     url: '/contacts',
     views: {
@@ -77,6 +77,38 @@ angular.module('app.routes', [])
     templateUrl: 'templates/contacts/edit.html',
     controller: 'contactsEditCtrl'
   })
+  //GROUPS
+      .state('menu.groups', {
+        url: '/groups',
+        views: {
+          'side-menu21': {
+            templateUrl: 'templates/groups/index.html',
+            controller: 'groupsCtrl'
+          }
+        }
+      })
+
+      .state('menu.groupShow', {
+        url: '/groupshow/{groupId:int}',
+        views: {
+          'side-menu21': {
+            templateUrl: 'templates/groups/show.html',
+            controller: 'groupsShowCtrl'
+          }
+        }
+      })
+
+      .state('groupCreate', {
+        url: '/groupscreate/',
+        templateUrl: 'templates/groups/create.html',
+        controller: 'groupsCreateCtrl'
+      })
+
+      .state('groupEdit', {
+        url: '/groupsedit/{groupId:int}',
+        templateUrl: 'templates/groups/edit.html',
+        controller: 'groupsEditCtrl'
+      })
 
 $urlRouterProvider.otherwise('/login')
 
