@@ -24,14 +24,11 @@ angular.module('app.controllers')
         });
 
         $scope.toggle = function (group) {
-            $scope.state = group;
-        };
-
-        $scope.toggleGroup = function(group) {
-            group.show = !group.show;
-        };
-        $scope.isGroupShown = function(group) {
-            return group.show;
+            if($scope.state == group){
+                $scope.state = null;
+            }else {
+                $scope.state = group;
+            }
         };
 
         $scope.deleteContact = function(){

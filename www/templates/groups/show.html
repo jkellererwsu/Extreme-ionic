@@ -10,9 +10,9 @@
         <div class="group_show_header" style="">
             <h1>{{group.name}}</h1>
             <h3>Miembros: {{alldata.member_count}}</h3>
-            <h3 ng-show="group.leader_id">Líder: <a ui-sref="contactShow({contactId: group.leader_id})">{{alldata.leader.fname+' '+alldata.leader.lname}}</a></h3>
-            <h3 ng-show="group.host_id">Anfitrión: <a ui-sref="contactShow({contactId: group.host_id})">{{alldata.host.fname+' '+alldata.host.lname}}</a></h3>
-            <h3 ng-show="group.timothy_id">Timoteo: <a ui-sref="contactShow({contactId: group.timothy_id})">{{alldata.timothy.fname+' '+alldata.timothy.lname}}</a></h3>
+            <h3 ng-show="group.leader_id">Líder: <a ui-sref="menu.contactShow({contactId: alldata.leader.id})">{{alldata.leader.fname+' '+alldata.leader.lname}}</a></h3>
+            <h3 ng-show="group.host_id">Anfitrión: <a ui-sref="menu.contactShow({contactId: alldata.host.id})">{{alldata.host.fname+' '+alldata.host.lname}}</a></h3>
+            <h3 ng-show="group.timothy_id">Timoteo: <a ui-sref="menu.contactShow({contactId: alldata.timothy.id})">{{alldata.timothy.fname+' '+alldata.timothy.lname}}</a></h3>
         </div>
         <div class="group_show_body list">
             <div class="item item-divider">Details</div>
@@ -22,18 +22,18 @@
 
             <div ng-show="alldata.contacts.length" class="item item-divider">Contacts:</div>
             <div ng-repeat="follower in alldata.contacts">
-                <a class="item" ui-sref="contactShow({contactId: follower.id})">{{follower.fname+' '+follower.lname}}</a>
+                <a class="item" ui-sref="menu.contactShow({contactId: follower.id})">{{follower.fname+' '+follower.lname}}</a>
             </div>
 
-        <div ng-show="attendance.length" class="item item-divider">Attendance:</div>
-        <div ng-repeat="(key, value) in attendance | orderBy: 'date':true | groupBy: 'date' as count">
+        <div ng-show="alldata.attendance_mod.length" class="item item-divider">Attendance:</div>
+        <div ng-repeat="(key, value) in alldata.attendance_mod | orderBy: 'date':true | groupBy: 'date' as count">
             <ion-item class="item-stable item" ng-click="toggle(key)">
                 <i class="icon" ng-class="key == state ? 'ion-minus' : 'ion-plus'"></i>
                 {{ key | limitTo: 10}} - ({{count[key].length}})
             </ion-item>
 
             <div ng-repeat="contact in value" ng-show="key == state">
-                <a class="item-accordion item"  ui-sref="menu.contactShow({contactId: contact.contact_id})">{{contact.contact_id}} - {{contact.note | limitTo: 10}}</a>
+                <a class="item-accordion item"  ui-sref="menu.contactShow({contactId: contact.contact_id})">{{contact.full_name}} - {{contact.note | limitTo: 10}}</a>
             </div>
         </div>
         </div>

@@ -9,7 +9,7 @@
         <div id="contactos-button-bar1" class=" button-bar "></div>
         <div class="contact_show_header" style="">
             <h1>{{contact.contact_show.fname+' '+contact.contact_show.lname}}</h1>
-            <h3 ng-show="contact.contact_show.leader_id">Líder: <a ui-sref="contactShow({contactId: contact.contact_show.leader.id})">{{contact.contact_show.leader.fname+' '+contact.contact_show.leader.lname}}</a></h3>
+            <h3 ng-show="contact.contact_show.leader_id">Líder: <a ui-sref-opts="{reload: true}" ui-sref="menu.contactShow({contactId: contact.contact_show.leader.id})">{{contact.contact_show.leader.fname+' '+contact.contact_show.leader.lname}}</a></h3>
         </div>
         <div class="contact_show_body list">
             <div class="item item-divider">Details</div>

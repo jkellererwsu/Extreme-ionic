@@ -77,7 +77,6 @@ angular.module('app.routes', [])
     templateUrl: 'templates/contacts/edit.html',
     controller: 'contactsEditCtrl'
   })
-  //GROUPS
       .state('menu.groups', {
         url: '/groups',
         views: {

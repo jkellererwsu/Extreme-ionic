@@ -11,6 +11,13 @@ angular.module('app.services')
                             'Authorization' : 'Bearer ' + token
                         }
                     },
+                        getlists: {
+                            method: 'GET',
+                            url:'/api/groups/create',
+                            headers: {
+                                'Authorization' : 'Bearer ' + token
+                            }
+                        },
                         delete: {
                             method: 'DELETE',
                             headers: {
