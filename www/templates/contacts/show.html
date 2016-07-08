@@ -24,7 +24,7 @@
             </div>-->
             <div ng-show="contact.followers.length" class="item item-divider">Discípulos:</div>
             <div ng-repeat="follower in contact.followers">
-                <a class="item" ui-sref="contactShow({contactId: follower.id})">{{follower.fname+' '+follower.lname}}</a>
+                <a class="item" ui-sref="menu.contactShow({contactId: follower.id})">{{follower.fname+' '+follower.lname}}</a>
             </div>
             <div class="item item-divider">Grupos:</div>
             <div ng-show="contact.group_leader">

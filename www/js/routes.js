@@ -103,6 +103,12 @@ angular.module('app.routes', [])
         controller: 'groupsCreateCtrl'
       })
 
+      .state('groupAttendCreate', {
+        url: '/groupsattendcreate/{groupId:int}',
+        templateUrl: 'templates/groups/attend_create.html',
+        controller: 'groupsAttendCtrl'
+      })
+
       .state('groupEdit', {
         url: '/groupsedit/{groupId:int}',
         templateUrl: 'templates/groups/edit.html',

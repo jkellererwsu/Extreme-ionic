@@ -15,6 +15,7 @@
             <h3 ng-show="group.timothy_id">Timoteo: <a ui-sref="menu.contactShow({contactId: alldata.timothy.id})">{{alldata.timothy.fname+' '+alldata.timothy.lname}}</a></h3>
         </div>
         <div class="group_show_body list">
+            <a ui-sref="groupAttendCreate({groupId: group.id})" class="button button-energized  button-block " >Añadir Asistencia</a>
             <div class="item item-divider">Details</div>
             <div class="item">Cuando: Los {{group.day}} a las {{group.time}}</div>
             <div class="item">Dónde: {{group.address+ ', ' +group.city}}</div>

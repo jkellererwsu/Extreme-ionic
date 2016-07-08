@@ -18,6 +18,27 @@ angular.module('app.services')
                                 'Authorization' : 'Bearer ' + token
                             }
                         },
+                        getattend: {
+                            method: 'GET',
+                            url:'/api/groups/createattend/:group',
+                            headers: {
+                                'Authorization' : 'Bearer ' + token
+                            }
+                        },
+                        saveattend: {
+                            method: 'POST',
+                            url:'/api/groups/createattend/:group',
+                            headers: {
+                                'Content-Type' : 'application/x-www-form-urlencoded',
+                                'Authorization' : 'Bearer ' + token
+                            },
+                            transformRequest: function(obj) {
+                                var str = [];
+                                for(var p in obj)
+                                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                return str.join("&");
+                            }
+                        },
                         delete: {
                             method: 'DELETE',
                             headers: {
