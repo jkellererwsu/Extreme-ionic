@@ -50,7 +50,4 @@ angular.module('app', [
 
         $httpProvider.interceptors.push('authHttpResponseInterceptor');
 
-    }])
-    .config(['$ionicConfigProvider', function($ionicConfigProvider) {
-        $ionicConfigProvider.views.maxCache(0);
     }]);
