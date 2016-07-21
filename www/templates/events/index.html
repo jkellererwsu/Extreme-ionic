@@ -1,0 +1,22 @@
+<ion-view id="event_index">
+    <ion-nav-title>Eventos</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <!--<button class="button icon ion-ios-plus-outline icon-right" ui-sref="eventCreate">
+            Nuevo
+        </button>-->
+    </ion-nav-buttons>
+
+    <ion-content padding="true" class="has-header">
+        <div id="group-button-bar1" class=" button-bar "></div>
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" placeholder="Filter Eventos" ng-model="search">
+        </label>
+        <!--Events -->
+        <ion-list id="all_events" ng-repeat="event in events | filter:search" >
+            <ion-item class="item-item energized  " id="event-list-item6" ui-sref="menu.eventShow({eventId: event.id})" ui-sref-opts="{reload: true, notify: true}">
+                <h2energized>{{event.name}}</h2energized>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

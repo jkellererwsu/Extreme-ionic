@@ -18,7 +18,7 @@
         Grupos Abiertos
         </ion-item>
         <ion-list id="opengroup" ng-repeat="group in groups | filter:search" ng-show="'opengroup' == state">
-            <ion-item class="item-avatar energized  " id="group-list-item6" ui-sref="menu.groupShow({groupId: group.id})" ui-sref-opts="{reload: true, notify: true}">
+            <ion-item class="item-item energized  " id="group-list-item6" ui-sref="menu.groupShow({groupId: group.id})" ui-sref-opts="{reload: true, notify: true}">
                 <h2energized>{{group.name}}</h2energized>
             </ion-item>
         </ion-list>
@@ -28,7 +28,7 @@
             Grupos de 12
         </ion-item>
         <ion-list id="groupsof12" ng-repeat="leader in leaders | filter:search" ng-show="'groupsof12' == state">
-            <ion-item class="item-avatar energized  " id="group-list-item6" ui-sref="menu.contactShow({contactId: leader.id})" >
+            <ion-item class="item-item energized  " id="group-list-item6" ui-sref="menu.contactShow({contactId: leader.id})" >
                 <h2energized>{{leader.fname + ' ' + leader.lname}} - {{leader.follower.length}}</h2energized>
             </ion-item>
         </ion-list>

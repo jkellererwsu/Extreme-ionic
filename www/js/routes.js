@@ -115,6 +115,44 @@ angular.module('app.routes', [])
         controller: 'groupsEditCtrl'
       })
 
+      .state('menu.events', {
+        url: '/events',
+        views: {
+          'side-menu21': {
+            templateUrl: 'templates/events/index.html',
+            controller: 'eventsCtrl'
+          }
+        }
+      })
+
+      .state('menu.eventShow', {
+        url: '/eventshow/{eventId:int}',
+        views: {
+          'side-menu21': {
+            templateUrl: 'templates/events/show.html',
+            controller: 'eventsShowCtrl'
+          }
+        }
+      })
+
+      .state('eventCreate', {
+        url: '/eventcreate/',
+        templateUrl: 'templates/events/create.html',
+        controller: 'eventsCreateCtrl'
+      })
+
+      .state('eventAttendCreate', {
+        url: '/eventattendcreate/{eventId:int}',
+        templateUrl: 'templates/events/attend_create.html',
+        controller: 'eventsAttendCtrl'
+      })
+
+      .state('eventEdit', {
+        url: '/eventedit/{eventId:int}',
+        templateUrl: 'templates/events/edit.html',
+        controller: 'eventsEditCtrl'
+      })
+
 $urlRouterProvider.otherwise('/login')
 
   

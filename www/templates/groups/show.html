@@ -34,7 +34,7 @@
             </ion-item>
 
             <div ng-repeat="contact in value" ng-show="key == state">
-                <a class="item-accordion item"  ui-sref="menu.contactShow({contactId: contact.contact_id})">{{contact.full_name}} - {{contact.note | limitTo: 10}}</a>
+                <a class="item-accordion item"  ui-sref="menu.contactShow({contactId: {{contact.contact_id}}})">{{contact.full_name}} - {{contact.note | limitTo: 10}}</a>
             </div>
         </div>
         </div>

@@ -1,0 +1,67 @@
+<ion-view id="editGroup" class=" ">
+    <ion-nav-title>Edit Grupos</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button icon ion-edit icon-right" ui-sref="menu.groups">
+            Cancelar
+        </button>
+    </ion-nav-buttons>
+    <ion-content padding="false" class="has-header">
+        <form id="create-contact" class="list">
+            <ion-list id="register-list2" class=" ">
+                <label class="item item-input " name="fname" >
+                    <span class="input-label">Nombre del grupo:</span>
+                    <input type="text" placeholder="" ng-model="group.name">
+                </label>
+                <label class="item item-select " id="leaders-select" name="leader">
+                    <span class="input-label">Líder del grupo:</span>
+                    <select ng-model="group.leader_id" ng-options="key as value for (key, value) in lists.leaders">
+                    </select>
+                </label>
+                <label class="item item-select " id="host-select" name="host">
+                    <span class="input-label">Anfitrión del Grupo:</span>
+                    <select ng-model="group.host_id" ng-options="key as value for (key, value) in lists.host">
+                    </select>
+                </label>
+                <label class="item item-select " id="timothy-select" name="timothy">
+                    <span class="input-label">Timoteo del Grupo:</span>
+                    <select ng-model="group.timothy_id" ng-options="key as value for (key, value) in lists.timothy">
+                    </select>
+                </label>
+                <label class="item item-input " name="day" >
+                    <span class="input-label">Día de la semana:</span>
+                    <select ng-model="group.day" >
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                </label>
+                <label class="item item-input " id="register-input3" name="time">
+                    <span class="input-label">Hora:</span>
+                    <input type="time" ng-model="extra.time"  formatedDate >
+                </label>
+
+                <label class="item item-input " name="street" >
+                    <span class="input-label">Calle </span>
+                    <input type="text" placeholder="" ng-model="group.address">
+                </label>
+                <label class="item item-input " name="city" >
+                    <span class="input-label">Ciudad </span>
+                    <input type="text" placeholder="" ng-model="group.city">
+                </label>
+                <label class="item item-input " name="founded" >
+                    <span class="input-label">Fecha de Fundación:: </span>
+                    <input type="date" placeholder="" ng-model="extra.founded">
+                </label>
+
+
+            </ion-list>
+            <button id="add-group-button" class=" button button-energized  button-block " ng-click="newGroup()">Añadir grupo</button>
+        </form>
+
+
+    </ion-content>
+</ion-view>

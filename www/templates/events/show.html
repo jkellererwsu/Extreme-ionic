@@ -1,0 +1,37 @@
+<ion-view cache-view="false" id="pageEvent{{event.id}}" class=" " hide-back-button="false">
+    <ion-nav-title>{{event.name}}</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <!--<button class="button icon ion-edit icon-right" ui-sref="eventEdit({eventId: event.id})">
+           editar
+        </button>-->
+    </ion-nav-buttons>
+    <ion-content padding="false" class="has-header">
+        <div id="contactos-button-bar1" class=" button-bar "></div>
+        <div class="group_show_header" style="max-height:150px">
+            <h1 style="font-size:25px;">{{event.name}}</h1>
+            <h3 style="font-size:20px;">Eventos: {{alldata.event_count}}</h3>
+        </div>
+        <div class="group_show_body list">
+            <a ui-sref="eventAttendCreate({eventId: event.id})" class="button button-energized  button-block " >Añadir Asistencia</a>
+
+
+        <div ng-show="alldata.event_count >0" class="item item-divider">Attendance:</div>
+        <div ng-repeat="(key, value) in alldata.event_attend_mod | orderBy: 'date':true | groupBy: 'date' as count">
+            <ion-item class="item-stable item" ng-click="toggle(key)">
+                <i class="icon" ng-class="key == state ? 'ion-minus' : 'ion-plus'"></i>
+                {{ key | limitTo: 10}} - ({{count[key].length}})
+            </ion-item>
+
+            <div ng-repeat="contact in value" ng-show="key == state">
+                <a class="item-accordion item"  ui-sref="menu.contactShow({contactId: {{contact.contact_id}}})">{{contact.full_name}} - {{contact.note | limitTo: 10}}</a>
+            </div>
+        </div>
+        </div>
+
+        <!--<button id="delete-button4" class=" button button-energized  button-block " ng-click="deleteEvent()">Delete</button>-->
+
+        </div>
+
+
+    </ion-content>
+</ion-view>
