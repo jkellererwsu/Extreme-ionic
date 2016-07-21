@@ -1,12 +1,13 @@
 angular.module('app.controllers')
 
-.controller('trainingsCtrl', function($scope, GroupsService) {
+.controller('trainingsCtrl', function($scope, TrainingsService) {
     $scope.token = window.localStorage.getItem("token");
-    $scope.groups = [];
+    $scope.trainings = [];
     //ContactsService.getContacts($scope.token)
-    GroupsService.groups($scope.token).get(null, function(data){
-        $scope.groups = data['groups'];
-        $scope.leaders = data['leaders'];
+    TrainingsService.trainings($scope.token).get(null, function(data){
+        $scope.trainings = data['trainings'];
+        $scope.trainings2 = data['trainings'];
+        console.log(data);
     }, function(data){
         console.log(data);
     });

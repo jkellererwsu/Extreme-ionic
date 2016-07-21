@@ -1,36 +1,29 @@
 <ion-view id="group_index">
-    <ion-nav-title>Grupos</ion-nav-title>
+    <ion-nav-title>Entrenamientos</ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button icon ion-ios-plus-outline icon-right" ui-sref="groupCreate">
+       <!-- <button class="button icon ion-ios-plus-outline icon-right" ui-sref="groupCreate">
             Nuevo
-        </button>
+        </button>-->
     </ion-nav-buttons>
 
     <ion-content padding="true" class="has-header">
         <div id="group-button-bar1" class=" button-bar "></div>
         <label class="item item-input">
             <i class="icon ion-search placeholder-icon"></i>
-            <input type="search" placeholder="Filter Grupos" ng-model="search">
+            <input type="search" placeholder="Filter Entrenamientos" ng-model="search">
         </label>
-        <!--Open Groups -->
-        <ion-item class="item-stable item" ng-click="toggle('opengroup')">
-        <i class="icon" ng-class="'opengroup' == state ? 'ion-minus' : 'ion-plus'"></i>
-        Grupos Abiertos
-        </ion-item>
-        <ion-list id="opengroup" ng-repeat="group in groups | filter:search" ng-show="'opengroup' == state">
-            <ion-item class="item-item energized  " id="group-list-item6" ui-sref="menu.groupShow({groupId: group.id})" ui-sref-opts="{reload: true, notify: true}">
-                <h2energized>{{group.name}}</h2energized>
+
+        <div ng-repeat="cat in trainings | unique: 'category' " >
+            <ion-item class="item-stable item" ng-click="toggle('{{cat.category}}')">
+                <i class="icon" ng-class="'{{cat.category}}' == state ? 'ion-minus' : 'ion-plus'"></i>
+                <h2energized>{{cat.category}}</h2energized>
             </ion-item>
-        </ion-list>
-        <!--Groups of 12 -->
-        <ion-item class="item-stable item" ng-click="toggle('groupsof12')">
-            <i class="icon" ng-class="'groupsof12' == state ? 'ion-minus' : 'ion-plus'"></i>
-            Grupos de 12
-        </ion-item>
-        <ion-list id="groupsof12" ng-repeat="leader in leaders | filter:search" ng-show="'groupsof12' == state">
-            <ion-item class="item-item energized  " id="group-list-item6" ui-sref="menu.contactShow({contactId: leader.id})" >
-                <h2energized>{{leader.fname + ' ' + leader.lname}} - {{leader.follower.length}}</h2energized>
-            </ion-item>
-        </ion-list>
+            <div ng-show="'{{cat.category}}' == state"  ng-repeat="train in trainings | filter: {'category':cat.category}:true| filter:search" >
+                <ion-item class="item-item energized  " id="group-list-item6" ui-sref="menu.trainShow({trainId: train.id})" ui-sref-opts="{reload: true, notify: true}">
+                    <h2energized>{{train.name}}</h2energized>
+                </ion-item>
+            </div>
+        </div>
+
     </ion-content>
 </ion-view>

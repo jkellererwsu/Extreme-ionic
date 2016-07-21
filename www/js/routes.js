@@ -157,7 +157,7 @@ angular.module('app.routes', [])
           views: {
               'side-menu21': {
                   templateUrl: 'templates/trainings/index.html',
-                  controller: 'traininsCtrl'
+                  controller: 'trainingsCtrl'
               }
           }
       })
