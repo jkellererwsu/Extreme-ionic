@@ -152,6 +152,33 @@ angular.module('app.routes', [])
         templateUrl: 'templates/events/edit.html',
         controller: 'eventsEditCtrl'
       })
+      .state('menu.trainings', {
+          url: '/trainings',
+          views: {
+              'side-menu21': {
+                  templateUrl: 'templates/trainings/index.html',
+                  controller: 'traininsCtrl'
+              }
+          }
+      })
+
+      .state('menu.trainShow', {
+          url: '/trainshow/{trainId:int}',
+          views: {
+              'side-menu21': {
+                  templateUrl: 'templates/trainings/show.html',
+                  controller: 'trainingsShowCtrl'
+              }
+          }
+      })
+
+
+      .state('trainAttendCreate', {
+          url: '/trainattendcreate/{trainId:int}',
+          templateUrl: 'templates/trainings/attend_create.html',
+          controller: 'trainingsAttendCtrl'
+      })
+
 
 $urlRouterProvider.otherwise('/login')
 

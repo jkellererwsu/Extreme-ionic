@@ -113,7 +113,16 @@ angular.module('app.controllers')
 
             $scope.attend.date = formatJSDate($scope.attendcontact.date);
             //the reduce section removes duplicates
-            $scope.attend.contacts = $scope.attendcontact.output.concat($scope.attendcontact.output2).reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
+            if(!!$scope.attendcontact.output2){
+                $scope.attend.contacts = $scope.attendcontact.output2;
+            }else if(!!$scope.attendcontact.output){
+                $scope.attend.contacts = $scope.attendcontact.output;
+            }else{
+                $scope.attend.contacts = $scope.attendcontact.output.concat($scope.attendcontact.output2).reduce(function (a, b) {
+                    if (a.indexOf(b) < 0)a.push(b);
+                    return a;
+                }, []);
+            }
             console.log($scope.attend);
 
             GroupsService.groups($scope.token).saveattend(null, $scope.attend, function(data){

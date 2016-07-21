@@ -1,0 +1,49 @@
+<ion-view cache-view="false" id="pageGroup{{group.id}}" class=" " hide-back-button="false">
+    <ion-nav-title>{{group.name}}</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button icon ion-edit icon-right" ui-sref="groupEdit({groupId: group.id})">
+           editar
+        </button>
+    </ion-nav-buttons>
+    <ion-content padding="false" class="has-header">
+        <div id="contactos-button-bar1" class=" button-bar "></div>
+        <div class="group_show_header" style="">
+            <h1>{{group.name}}</h1>
+            <h3>Miembros: {{alldata.member_count}}</h3>
+            <h3 ng-show="group.leader_id">Líder: <a ui-sref="menu.contactShow({contactId: alldata.leader.id})">{{alldata.leader.fname+' '+alldata.leader.lname}}</a></h3>
+            <h3 ng-show="group.host_id">Anfitrión: <a ui-sref="menu.contactShow({contactId: alldata.host.id})">{{alldata.host.fname+' '+alldata.host.lname}}</a></h3>
+            <h3 ng-show="group.timothy_id">Timoteo: <a ui-sref="menu.contactShow({contactId: alldata.timothy.id})">{{alldata.timothy.fname+' '+alldata.timothy.lname}}</a></h3>
+        </div>
+        <div class="group_show_body list">
+            <a ui-sref="groupAttendCreate({groupId: group.id})" class="button button-energized  button-block " >Añadir Asistencia</a>
+            <div class="item item-divider">Details</div>
+            <div class="item">Cuando: Los {{group.day}} a las {{group.time}}</div>
+            <div class="item">Dónde: {{group.address+ ', ' +group.city}}</div>
+            <div class="item">Fecha de Fundado: {{founded | date: 'yyyy-MM-dd'}}</div>
+
+            <div ng-show="alldata.contacts.length" class="item item-divider">Contacts:</div>
+            <div ng-repeat="follower in alldata.contacts">
+                <a class="item" ui-sref="menu.contactShow({contactId: follower.id})">{{follower.fname+' '+follower.lname}}</a>
+            </div>
+
+        <div ng-show="alldata.attendance_mod.length" class="item item-divider">Attendance:</div>
+        <div ng-repeat="(key, value) in alldata.attendance_mod | orderBy: 'date':true | groupBy: 'date' as count">
+            <ion-item class="item-stable item" ng-click="toggle(key)">
+                <i class="icon" ng-class="key == state ? 'ion-minus' : 'ion-plus'"></i>
+                {{ key | limitTo: 10}} - ({{count[key].length}})
+            </ion-item>
+
+            <div ng-repeat="contact in value" ng-show="key == state">
+                <a class="item-accordion item"  ui-sref="menu.contactShow({contactId: {{contact.contact_id}}})">{{contact.full_name}} - {{contact.note | limitTo: 10}}</a>
+            </div>
+        </div>
+        </div>
+
+        <button id="delete-button4" class=" button button-energized  button-block " ng-click="deleteGroup()">Delete</button>
+
+
+        </div>
+
+
+    </ion-content>
+</ion-view>
