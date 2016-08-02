@@ -15,7 +15,7 @@ angular.module('app.services', [])
             var promise = deferred.promise;
             var settings = {
                 "crossDomain": true,
-                "url": "/api/login",
+                "url": "http://app.extremenazarene.org/api/login",
                 "method": "POST",
                 "data": data
             };
