@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.extreme213998" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Extreme</name>
+<widget id="com.ExtremeNaz.CRM.Mobile.Android" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Extreme CRM</name>
   <description>
-        An Ionic Framework and Cordova project.
+        An app to mange Church Contacts
     </description>
   <author email="webmaster@extremenazarene.org" href="http://extremenazarene.org/">
       Justin Kellerer
