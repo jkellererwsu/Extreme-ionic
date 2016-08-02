@@ -21,13 +21,12 @@ angular.module('app.controllers')
     };
 
 })
-    .controller('trainingsShowCtrl', function($scope,GroupsService, $stateParams, $ionicPopup){
+    .controller('trainingsShowCtrl', function($scope,TrainingsService, $stateParams, $ionicPopup){
         $scope.token = window.localStorage.getItem("token");
         $scope.group = [];
-        GroupsService.groups($scope.token).get({group:$stateParams.groupId}, function(data){
-            $scope.group = data.group;
+        TrainingsService.trainings($scope.token).get({train:$stateParams.trainId}, function(data){
+            $scope.train = data.train;
             $scope.alldata = data;
-            $scope.founded = new Date($scope.group.founded.date);
             console.log($scope.alldata);
         }, function(data){
             console.log(data);
@@ -46,8 +45,8 @@ angular.module('app.controllers')
 
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
-                templateUrl: 'templates/groups/attend_create.html',
-                title: 'Asistencia de ' + $scope.group.name,
+                templateUrl: 'templates/trainings/attend_create.html',
+                title: 'Asistencia de ' + $scope.train.name,
                 //subTitle: 'Please use normal things',
                 scope: $scope,
                 buttons: [
@@ -55,14 +54,6 @@ angular.module('app.controllers')
                     {
                         text: '<b>Save</b>',
                         type: 'button-positive',
-                        onTap: function(e) {
-                            if (!$scope.data.wifi) {
-                                //don't allow the user to close unless he enters wifi password
-                                e.preventDefault();
-                            } else {
-                                return $scope.data.wifi;
-                            }
-                        }
                     },
                 ]
             });
@@ -72,10 +63,10 @@ angular.module('app.controllers')
 
         };
 
-        $scope.deleteGroup = function(){
-            GroupsService.groups($scope.token).delete({group:$stateParams.groupId}, function(data){
+        $scope.deleteTrain = function(){
+            TrainingsService.trainings($scope.token).delete({train:$stateParams.trainId}, function(data){
                 console.log(data);
-                $state.go('menu.groups',{}, {reload: true});
+                $state.go('menu.trainings',{}, {reload: true});
             }, function(data){
                 console.log(data);
             });
@@ -84,13 +75,13 @@ angular.module('app.controllers')
         }
 
     })
-    .controller('trainingsAttendCtrl', function($scope,GroupsService, $stateParams, $state){
+    .controller('trainingsAttendCtrl', function($scope,TrainingsService, $stateParams, $state){
         $scope.token = window.localStorage.getItem("token");
         $scope.attend = [];
-        $scope.attend.groupid = $stateParams.groupId;
+        $scope.attend.trainid = $stateParams.trainId;
         $scope.attendcontact = [];
         $scope.attendcontact.date = new Date();
-        GroupsService.groups($scope.token).getattend({group:$stateParams.groupId}, function(data){
+        TrainingsService.trainings($scope.token).getattend({train:$stateParams.trainId}, function(data){
             $scope.alldata = data;
 
             console.log($scope.alldata);
@@ -114,13 +105,13 @@ angular.module('app.controllers')
 
             $scope.attend.date = formatJSDate($scope.attendcontact.date);
             //the reduce section removes duplicates
-            $scope.attend.contacts = $scope.attendcontact.output.concat($scope.attendcontact.output2).reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
+            $scope.attend.contacts = $scope.attendcontact.output;
             console.log($scope.attend);
 
-            GroupsService.groups($scope.token).saveattend(null, $scope.attend, function(data){
+            TrainingsService.trainings($scope.token).saveattend(null, $scope.attend, function(data){
                 $scope.result = data;
                 console.log($scope.result);
-                $state.go('menu.groups', {}, {reload: true});
+                $state.go('menu.trainings', {}, {reload: true});
             }, function(data){
                 console.log(data);
             });
