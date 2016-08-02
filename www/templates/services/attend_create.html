@@ -1,4 +1,4 @@
-<ion-view cache-view="false" id="newContact" class=" ">
+<ion-view cache-view="false" id="newServiceattned" class=" ">
     <ion-nav-title>Attendence</ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button icon ion-edit icon-right" ui-sref="menu.trainings">
@@ -9,26 +9,30 @@
         <form id="new-train{{contact.id}}" class="list">
             <ion-list id="register-list2" class=" ">
 
-
-<fancy-select
-        header-text="Single"
-        allow-empty="false"
-        value="attendcontact.input"
-        value2="attendcontact.output"
-        text="Elegir miembros"
-        items="alldata.contacts"
-        value-property="fname"
-        text-property="fname"
-        multi-select="true"
-        note-text="Select "
-        modal-template-url="lib/ionic-fancy-select/templates/modal-template-contact.html"
-        template-url="lib/ionic-fancy-select/templates/item-template.html"
-        value-changed="onValueChanged(value)"
-        get-custom-text="getCustomText(value)"
->
-</fancy-select>
-
-
+                <label class="item item-input " name="adults" >
+                    <span class="input-label">Adultos:</span>
+                    <input type="number" placeholder="" ng-model="attend.adults">
+                </label>
+                <label class="item item-input " name="kids" >
+                    <span class="input-label">Ninos:</span>
+                    <input type="number" placeholder="" ng-model="attend.kids">
+                </label>
+                <label class="item item-input " name="extremies" >
+                    <span class="input-label">Personas de Extreme:</span>
+                    <input type="number" placeholder="" ng-model="attend.extremies">
+                </label>
+                <label class="item item-input " name="offering" >
+                    <span class="input-label">Offering:</span>
+                    <input type="number" placeholder="" ng-model="attend.offering">
+                </label>
+                <label class="item item-input " name="tithe" >
+                    <span class="input-label">Tithe:</span>
+                    <input type="number" placeholder="" ng-model="attend.tithe">
+                </label>
+                <label class="item item-input " name="other" >
+                    <span class="input-label">Other Income:</span>
+                    <input type="number" placeholder="" ng-model="attend.other_income">
+                </label>
                 <label class="item item-input " name="date">
                     <span class="input-label">Fecha: </span>
                     <input type="date" placeholder="" ng-model="attendcontact.date">

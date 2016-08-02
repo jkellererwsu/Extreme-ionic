@@ -178,6 +178,32 @@ angular.module('app.routes', [])
           templateUrl: 'templates/trainings/attend_create.html',
           controller: 'trainingsAttendCtrl'
       })
+      .state('menu.services', {
+          url: '/services',
+          views: {
+              'side-menu21': {
+                  templateUrl: 'templates/services/index.html',
+                  controller: 'servicesCtrl'
+              }
+          }
+      })
+
+      .state('menu.serveShow', {
+          url: '/serveshow/{serveId:int}',
+          views: {
+              'side-menu21': {
+                  templateUrl: 'templates/services/show.html',
+                  controller: 'servicesShowCtrl'
+              }
+          }
+      })
+
+
+      .state('serveAttendCreate', {
+          url: '/serveattendcreate/{serveId:int}',
+          templateUrl: 'templates/services/attend_create.html',
+          controller: 'servicesAttendCtrl'
+      })
 
 
 $urlRouterProvider.otherwise('/login')

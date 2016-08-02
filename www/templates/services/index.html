@@ -1,5 +1,5 @@
 <ion-view id="group_index">
-    <ion-nav-title>Entrenamientos</ion-nav-title>
+    <ion-nav-title>Servicos</ion-nav-title>
     <ion-nav-buttons side="right">
        <!-- <button class="button icon ion-ios-plus-outline icon-right" ui-sref="groupCreate">
             Nuevo
@@ -10,20 +10,15 @@
         <div id="group-button-bar1" class=" button-bar "></div>
         <label class="item item-input">
             <i class="icon ion-search placeholder-icon"></i>
-            <input type="search" placeholder="Filter Entrenamientos" ng-model="search">
+            <input type="search" placeholder="Filter Servicos" ng-model="search">
         </label>
 
-        <div ng-repeat="cat in trainings | unique: 'category' " >
-            <ion-item class="item-stable item" ng-click="toggle('{{cat.category}}')">
-                <i class="icon" ng-class="'{{cat.category}}' == state ? 'ion-minus' : 'ion-plus'"></i>
-                <h2energized>{{cat.category}}</h2energized>
-            </ion-item>
-            <div ng-show="'{{cat.category}}' == state"  ng-repeat="train in trainings | filter: {'category':cat.category}:true| filter:search" >
-                <ion-item class="item-item energized  " id="group-list-item6" ui-sref="menu.trainShow({trainId: train.id})" ui-sref-opts="{reload: true, notify: true}">
-                    <h2energized>{{train.name}} ({{train.contacts.length}})</h2energized>
+
+            <div  ng-repeat="serve in services | filter:search" >
+                <ion-item class="item-item energized  " id="group-list-item6" ui-sref="menu.serveShow({serveId: serve.id})" ui-sref-opts="{reload: true, notify: true}">
+                    <h2energized>{{serve.name}} ({{serve.total}})</h2energized>
                 </ion-item>
             </div>
-        </div>
 
     </ion-content>
 </ion-view>

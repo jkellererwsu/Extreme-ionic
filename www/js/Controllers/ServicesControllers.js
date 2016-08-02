@@ -1,12 +1,12 @@
 angular.module('app.controllers')
 
-.controller('trainingsCtrl', function($scope, TrainingsService) {
+.controller('servicesCtrl', function($scope, ServicesService) {
     $scope.token = window.localStorage.getItem("token");
-    $scope.trainings = [];
+    $scope.services = [];
     //ContactsService.getContacts($scope.token)
-    TrainingsService.trainings($scope.token).get(null, function(data){
-        $scope.trainings = data['trainings'];
-        $scope.trainings2 = data['trainings'];
+    ServicesService.services($scope.token).get(null, function(data){
+        $scope.services = data['services'];
+        $scope.alldata =data;
         console.log(data);
     }, function(data){
         console.log(data);
@@ -21,11 +21,11 @@ angular.module('app.controllers')
     };
 
 })
-    .controller('trainingsShowCtrl', function($scope,TrainingsService, $stateParams, $ionicPopup){
+    .controller('servicesShowCtrl', function($scope,ServicesService, $stateParams, $ionicPopup){
         $scope.token = window.localStorage.getItem("token");
-        $scope.train = [];
-        TrainingsService.trainings($scope.token).get({train:$stateParams.trainId}, function(data){
-            $scope.train = data.train;
+        $scope.serve = [];
+        ServicesService.services($scope.token).get({serve:$stateParams.serveId}, function(data){
+            $scope.serve = data.serve;
             $scope.alldata = data;
             console.log($scope.alldata);
         }, function(data){
@@ -45,8 +45,8 @@ angular.module('app.controllers')
 
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
-                templateUrl: 'templates/trainings/attend_create.html',
-                title: 'Asistencia de ' + $scope.train.name,
+                templateUrl: 'templates/services/attend_create.html',
+                title: 'Asistencia de ' + $scope.serve.name,
                 //subTitle: 'Please use normal things',
                 scope: $scope,
                 buttons: [
@@ -75,13 +75,13 @@ angular.module('app.controllers')
         }
 
     })
-    .controller('trainingsAttendCtrl', function($scope,TrainingsService, $stateParams, $state){
+    .controller('servicesAttendCtrl', function($scope,ServicesService, $stateParams, $state){
         $scope.token = window.localStorage.getItem("token");
         $scope.attend = [];
-        $scope.attend.trainid = $stateParams.trainId;
+        $scope.attend.service_id = $stateParams.serveId;
         $scope.attendcontact = [];
         $scope.attendcontact.date = new Date();
-        TrainingsService.trainings($scope.token).getattend({train:$stateParams.trainId}, function(data){
+        ServicesService.services($scope.token).getattend({serve:$stateParams.serveId}, function(data){
             $scope.alldata = data;
 
             console.log($scope.alldata);
@@ -105,13 +105,12 @@ angular.module('app.controllers')
 
             $scope.attend.date = formatJSDate($scope.attendcontact.date);
             //the reduce section removes duplicates
-            $scope.attend.contacts = $scope.attendcontact.output;
             console.log($scope.attend);
 
-            TrainingsService.trainings($scope.token).saveattend(null, $scope.attend, function(data){
+            ServicesService.services($scope.token).saveattend(null, $scope.attend, function(data){
                 $scope.result = data;
                 console.log($scope.result);
-                $state.go('menu.trainings', {}, {reload: true});
+                $state.go('menu.services', {}, {reload: true});
             }, function(data){
                 console.log(data);
             });
