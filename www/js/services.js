@@ -63,5 +63,28 @@ angular.module('app.services', [])
             return promise;
         }
     }
-});
+})
+    .service('RegisterService', function($resource) {
+        return {
+            register: function() {
+                return $resource('/api/register/:reg',
+                    {register: "@reg"},
+                    {
+                        save: {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type' : 'application/x-www-form-urlencoded',
+                            },
+                            transformRequest: function(obj) {
+                                var str = [];
+                                for(var p in obj)
+                                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                return str.join("&");
+                            }
+                        }
+                    }
+                )
+            }}
+
+    });
 

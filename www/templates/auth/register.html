@@ -4,34 +4,40 @@
             <ion-list id="register-list2" class=" ">
                 <label class="item item-input " id="register-input3" name="email">
                     <span class="input-label">Email</span>
-                    <input type="email" placeholder="">
+                    <input ng-model="user.email" type="email" placeholder="">
                 </label>
                 <label class="item item-input " id="register-input5" name="password">
                     <span class="input-label">Clave</span>
-                    <input type="text" placeholder="">
+                    <input ng-model="user.password" type="text" placeholder="">
                 </label>
             </ion-list>
             <label class="item item-select " id="register-select1" name="church">
                 <span class="input-label">Igelsia</span>
-                <select></select>
+                <select ng-model="user.church" ng-options="key as value for (key, value) in result.churches">
+                    <option value="">Nuevo Igelsia</option>
+                </select>
             </label>
-            <label class="item item-input " id="register-input6" name="church_address">
+            <label ng-hide="user.church" class="item item-input " id="register-input6" name="church_name">
+                <span class="input-label">Nombre de Igelsia</span>
+                <input ng-model="user.church_name" type="text" placeholder="">
+            </label>
+            <label ng-hide="user.church" class="item item-input " id="register-input6" name="church_address">
                 <span class="input-label">Address de Igelsia</span>
-                <input type="text" placeholder="">
+                <input ng-model="user.church_address" type="text" placeholder="">
             </label>
-            <label class="item item-input " id="register-input7" name="church_city">
+            <label  ng-hide="user.church" class="item item-input " id="register-input7" name="church_city">
                 <span class="input-label">city de Igelsia</span>
-                <input type="text" placeholder="">
+                <input ng-model="user.church_city" type="text" placeholder="">
             </label>
-            <label class="item item-input " id="register-input8" name="church_country">
+            <label  ng-hide="user.church" class="item item-input " id="register-input8" name="church_country">
                 <span class="input-label">Country de Igelsia</span>
-                <input type="text" placeholder="">
+                <input ng-model="user.church_country" type="text" placeholder="">
             </label>
-            <label class="item item-input " id="register-input9" name="church_district">
+            <label  ng-hide="user.church" class="item item-input " id="register-input9" name="church_district">
                 <span class="input-label">District de Igelsia</span>
-                <input type="text" placeholder="">
+                <input ng-model="user.church_district" type="text" placeholder="">
             </label>
-            <button id="register-button4" class=" button button-energized  button-block ">Sign up</button>
+            <button id="register-button4" class=" button button-energized  button-block " ng-click="newUser()">Sign up</button>
         </form>
     </ion-content>
 </ion-view>

@@ -34,8 +34,26 @@ $scope.logout = function(){
 
 })
    
-.controller('registerCtrl', function($scope) {
+.controller('registerCtrl', function(RegisterService, $scope, $state) {
+    $scope.user = [];
+    RegisterService.register().get(null, function(data){
+        $scope.result = data;
+        console.log($scope.result);
+    }, function(data){
+        console.log(data);
+    });
 
+    $scope.newUser = function(){
+        console.log($scope.user);
+        RegisterService.register().save(null, $scope.user, function(data){
+            $scope.result = data;
+            console.log($scope.result);
+            $state.go('login', {}, {reload: true});
+        }, function(data){
+            console.log(data);
+        });
+
+    };
 })
    
 .controller('forgotPasswordCtrl', function($scope) {
