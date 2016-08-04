@@ -7,7 +7,7 @@ angular.module('app.services')
             var promise = deferred.promise;
             var settings = {
                 "crossDomain": true,
-                "url": "/api/api/contacts/create/?token=" + token,
+                "url": "http://app.extremenazarene.org/api/contacts/create/?token=" + token,
                 "method": "GET"
             };
             $http(settings).then(function mySuccess(response) {
@@ -32,7 +32,7 @@ angular.module('app.services')
     .service('ContactsService1', function($resource) {
         return {
             contacts: function(token) {
-                return $resource('/api/contacts/:contact',
+                return $resource('http://app.extremenazarene.org/api/contacts/:contact',
         {contact: "@contact"},
         { get: {
                 method: 'GET',

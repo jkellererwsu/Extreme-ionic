@@ -3,7 +3,7 @@ angular.module('app.services')
     .service('EventsService', function($resource) {
         return {
             events: function(token) {
-                return $resource('/api/events/:event',
+                return $resource('http://app.extremenazarene.org/api/events/:event',
                     {contact: "@event"},
                     { get: {
                         method: 'GET',
@@ -13,21 +13,21 @@ angular.module('app.services')
                     },
                         getlists: {
                             method: 'GET',
-                            url:'/api/events/create',
+                            url:'http://app.extremenazarene.org/api/events/create',
                             headers: {
                                 'Authorization' : 'Bearer ' + token
                             }
                         },
                         getattend: {
                             method: 'GET',
-                            url:'/api/events/createattend/:event',
+                            url:'http://app.extremenazarene.org/api/events/createattend/:event',
                             headers: {
                                 'Authorization' : 'Bearer ' + token
                             }
                         },
                         saveattend: {
                             method: 'POST',
-                            url:'/api/events/createattend/',
+                            url:'http://app.extremenazarene.org/api/events/createattend/',
                             headers: {
                                 'Content-Type' : 'application/x-www-form-urlencoded',
                                 'Authorization' : 'Bearer ' + token

@@ -45,13 +45,13 @@ $scope.logout = function(){
 
     $scope.newUser = function(){
         console.log($scope.user);
-        RegisterService.register().save(null, $scope.user, function(data){
-            $scope.result = data;
-            console.log($scope.result);
-            $state.go('login', {}, {reload: true});
-        }, function(data){
-            console.log(data);
-        });
+            RegisterService.register().save(null, $scope.user, function (data) {
+                $scope.result = data;
+                console.log($scope.result);
+                $state.go('login', {}, {reload: true});
+            }, function (data) {
+                console.log(data);
+            });
 
     };
 })

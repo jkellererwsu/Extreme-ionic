@@ -42,7 +42,7 @@ angular.module('app.services', [])
             var promise = deferred.promise;
             var settings = {
                 "crossDomain": true,
-                "url": "/api/validate_token?token="+data,
+                "url": "http://app.extremenazarene.org/api/validate_token?token="+data,
                 "method": "GET"
             };
             $http(settings).then(function mySuccess(response) {
@@ -67,7 +67,7 @@ angular.module('app.services', [])
     .service('RegisterService', function($resource) {
         return {
             register: function() {
-                return $resource('/api/register/:reg',
+                return $resource('http://app.extremenazarene.org/api/register/:reg',
                     {register: "@reg"},
                     {
                         save: {

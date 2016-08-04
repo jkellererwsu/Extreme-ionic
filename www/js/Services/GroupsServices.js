@@ -3,7 +3,7 @@ angular.module('app.services')
     .service('GroupsService', function($resource) {
         return {
             groups: function(token) {
-                return $resource('/api/groups/:group',
+                return $resource('http://app.extremenazarene.org/api/groups/:group',
                     {contact: "@group"},
                     { get: {
                         method: 'GET',
@@ -13,21 +13,21 @@ angular.module('app.services')
                     },
                         getlists: {
                             method: 'GET',
-                            url:'/api/groups/create',
+                            url:'http://app.extremenazarene.org/api/groups/create',
                             headers: {
                                 'Authorization' : 'Bearer ' + token
                             }
                         },
                         getattend: {
                             method: 'GET',
-                            url:'/api/groups/createattend/:group',
+                            url:'http://app.extremenazarene.org/api/groups/createattend/:group',
                             headers: {
                                 'Authorization' : 'Bearer ' + token
                             }
                         },
                         saveattend: {
                             method: 'POST',
-                            url:'/api/groups/createattend/:group',
+                            url:'http://app.extremenazarene.org/api/groups/createattend/:group',
                             headers: {
                                 'Content-Type' : 'application/x-www-form-urlencoded',
                                 'Authorization' : 'Bearer ' + token
