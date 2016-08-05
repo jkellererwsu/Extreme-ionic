@@ -1,4 +1,4 @@
-<ion-view title="Register" id="page5" class=" ">
+<ion-view title="Register" id="page5" class=" " cache-view="false">
     <ion-content padding="true" class="has-header">
         <form id="register-createuser" name="registeruser" class="list " ng-submit="newUser(registeruser.$valid)">
             <ion-list id="register-list2" class=" ">
@@ -8,7 +8,7 @@
                 </label>
                 <label class="item item-input " id="register-input5" name="password" required>
                     <span class="input-label">Clave</span>
-                    <input ng-model="user.password" type="text" placeholder="">
+                    <input ng-model="user.password" type="password" placeholder="">
                 </label>
             </ion-list>
             <label class="item item-select " id="register-select1" name="church">
